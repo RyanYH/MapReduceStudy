@@ -1,12 +1,15 @@
 package com.sist.mapreduce;
 
+import org.apache.log4j.Logger;
+
 import twitter4j.StallWarning;
 import twitter4j.Status;
 import twitter4j.StatusDeletionNotice;
 import twitter4j.StatusListener;
+import twitter4j.Twitter;
 
 public class TwitterListener implements StatusListener{
-
+	Logger logger = Logger.getLogger(Twitter.class);
 	@Override
 	public void onException(Exception ex) {
 		// TODO Auto-generated method stub
@@ -34,8 +37,9 @@ public class TwitterListener implements StatusListener{
 	@Override
 	public void onStatus(Status status) {
 		// TODO Auto-generated method stub
-		System.out.println(status.getUser().getScreenName()+
-								":"+status.getText());
+		String data = status.getText();
+		System.out.println(data);
+		logger.info(data);
 	}
 
 	@Override
